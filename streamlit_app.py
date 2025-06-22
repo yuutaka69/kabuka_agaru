@@ -10,7 +10,7 @@ import mplfinance as mpf
 import json
 
 # --- 設定 ---
-MODELS_DIR = Path("models") # モデルとメトリクスJSONの共通ディレクトリと仮定
+MODELS_DIR = Path("models") # モデルとメトリクスJSONの共通ディレクトリ
 DATA_DIR = Path("data/modified")
 
 # --- 関数: モデルとデータのロード ---
@@ -116,23 +116,29 @@ else:
 # 2. 利用可能なターゲット期間の取得
 available_target_periods = []
 if MODELS_DIR.exists():
-    # モデルファイルとメトリクスファイルの両方から期間を抽出するロジックに変更
-    available_model_files = [f for f in os.listdir(MODELS_DIR) if f.startswith(f"lgbm_model_{selected_stock}_") and f.endswith('.joblib')]
-    available_metrics_files = [f for f in os.listdir(MODELS_DIR) if f.startswith(f"{selected_stock}_") and f.endswith('_metrics.json')] # 新しい命名規則に対応
-
+    # モデルファイルとメトリクスファイルの両方から期間を抽出
     # joblibファイルから期間を抽出
-    periods_from_models = {
-        int(f.replace(f"lgbm_model_{selected_stock}_", "").replace("d.joblib", ""))
-        for f in available_model_files
-        if f.replace(f"lgbm_model_{selected_stock}_", "").replace("d.joblib", "").isdigit()
-    }
-    
+    periods_from_models = set()
+    for f in os.listdir(MODELS_DIR):
+        if f.startswith(f"lgbm_model_{selected_stock}_") and f.endswith('.joblib'):
+            try:
+                period_str = f.replace(f"lgbm_model_{selected_stock}_", "").replace("d.joblib", "")
+                if period_str.isdigit():
+                    periods_from_models.add(int(period_str))
+            except ValueError:
+                continue # 数字に変換できない場合はスキップ
+
     # metrics JSONファイルから期間を抽出 (例: 1547_120d_metrics.json -> 120)
-    periods_from_metrics = {
-        int(f.replace(f"{selected_stock}_", "").replace("d_metrics.json", ""))
-        for f in available_metrics_files
-        if f.replace(f"{selected_stock}_", "").replace("d_metrics.json", "").isdigit()
-    }
+    periods_from_metrics = set()
+    for f in os.listdir(MODELS_DIR):
+        if f.startswith(f"{selected_stock}_") and f.endswith('_metrics.json'):
+            try:
+                # '1547_120d_metrics.json' から '120' を抽出
+                period_str = f.replace(f"{selected_stock}_", "").replace("d_metrics.json", "")
+                if period_str.isdigit():
+                    periods_from_metrics.add(int(period_str))
+            except ValueError:
+                continue # 数字に変換できない場合はスキップ
 
     # 両方のファイルに存在する期間のみを対象とする
     available_target_periods = sorted(list(periods_from_models.intersection(periods_from_metrics)))
@@ -161,9 +167,9 @@ if available_target_periods:
     # モデルと訓練時の特徴量リストをロード
     model, trained_feature_names = load_model_and_features(selected_model_path)
 
-    # モデル性能データをロード (新しい命名規則に対応)
-    selected_perf_filename = f"{selected_stock}_{selected_target_period}d_metrics.json" # サンプルJSONの命名規則に合わせる
-    selected_perf_filepath = MODELS_DIR / selected_perf_filename # MODELS_DIR にあると仮定
+    # モデル性能データをロード (正確な命名規則に対応)
+    selected_perf_filename = f"{selected_stock}_{selected_target_period}d_metrics.json" # この行が重要
+    selected_perf_filepath = MODELS_DIR / selected_perf_filename 
     model_performance_data = load_model_performance(selected_perf_filepath)
 
 else:
@@ -250,14 +256,14 @@ if st.button("📈 株価上昇を予測する"):
             st.write(f"- 適合率 (Precision): `{class_0.get('precision', 'N/A'):.2f}`")
             st.write(f"- 再現率 (Recall): `{class_0.get('recall', 'N/A'):.2f}`")
             st.write(f"- F1スコア: `{class_0.get('f1-score', 'N/A'):.2f}`")
-            st.write(f"- サポート数: `{int(class_0.get('support', 0))}`") # supportは整数で表示
+            st.write(f"- サポート数: `{int(class_0.get('support', 0))}`")
 
             st.markdown(f"**クラス 1 (上昇する) のメトリクス:**")
             class_1 = model_performance_data.get('class_1_metrics', {})
             st.write(f"- 適合率 (Precision): `{class_1.get('precision', 'N/A'):.2f}`")
             st.write(f"- 再現率 (Recall): `{class_1.get('recall', 'N/A'):.2f}`")
             st.write(f"- F1スコア: `{class_1.get('f1-score', 'N/A'):.2f}`")
-            st.write(f"- サポート数: `{int(class_1.get('support', 0))}`") # supportは整数で表示
+            st.write(f"- サポート数: `{int(class_1.get('support', 0))}`")
 
             st.markdown("---")
             st.write("**混同行列:**")
