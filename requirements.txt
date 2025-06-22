@@ -4,3 +4,5 @@ numpy
 lightgbm
 scikit-learn
 joblib
+matplotlib
+mplfinance
