@@ -1,0 +1,1906 @@
+{
+    "MSFT": {
+        "14d": {
+            "training_evaluation": {
+                "accuracy": 0.5351187468418394,
+                "macro_avg_precision": 0.5308623876866517,
+                "macro_avg_recall": 0.5304764486169377,
+                "macro_avg_f1-score": 0.5301752256381037,
+                "weighted_avg_precision": 0.5331766818280654,
+                "weighted_avg_recall": 0.5351187468418394,
+                "weighted_avg_f1-score": 0.5336576075697992,
+                "roc_auc_score": 0.5820894909435133,
+                "confusion_matrix": [
+                    [
+                        631,
+                        430
+                    ],
+                    [
+                        490,
+                        428
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.5628902765388046,
+                    "recall": 0.5947219604147032,
+                    "f1-score": 0.5783684692942255,
+                    "support": 1061.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.4988344988344988,
+                    "recall": 0.4662309368191721,
+                    "f1-score": 0.481981981981982,
+                    "support": 918.0
+                },
+                "support_class_0": 1061.0,
+                "support_class_1": 918.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 1.0,
+                "roc_auc_score": NaN,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        14,
+                        0
+                    ],
+                    [
+                        0,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 14,
+                "actual_rise_signals": 0,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.3213308522863298
+            }
+        },
+        "30d": {
+            "training_evaluation": {
+                "accuracy": 0.5285497726124305,
+                "macro_avg_precision": 0.5191235533920693,
+                "macro_avg_recall": 0.5116860674746581,
+                "macro_avg_f1-score": 0.46710441441017625,
+                "weighted_avg_precision": 0.5199389175445177,
+                "weighted_avg_recall": 0.5285497726124305,
+                "weighted_avg_f1-score": 0.4768881247191661,
+                "roc_auc_score": 0.549681535839254,
+                "confusion_matrix": [
+                    [
+                        859,
+                        184
+                    ],
+                    [
+                        749,
+                        187
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.5342039800995025,
+                    "recall": 0.8235858101629914,
+                    "f1-score": 0.6480573368540173,
+                    "support": 1043.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.5040431266846361,
+                    "recall": 0.1997863247863248,
+                    "f1-score": 0.2861514919663351,
+                    "support": 936.0
+                },
+                "support_class_0": 1043.0,
+                "support_class_1": 936.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.6,
+                "roc_auc_score": 0.7692307692307692,
+                "precision_class_1": 0.25,
+                "recall_class_1": 1.0,
+                "f1_score_class_1": 0.4,
+                "confusion_matrix": [
+                    [
+                        14,
+                        12
+                    ],
+                    [
+                        0,
+                        4
+                    ]
+                ],
+                "total_evaluated_days": 30,
+                "actual_rise_signals": 4,
+                "predicted_rise_signals": 16,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.4893011398190851
+            }
+        },
+        "60d": {
+            "training_evaluation": {
+                "accuracy": 0.5042950985346134,
+                "macro_avg_precision": 0.5068177600890692,
+                "macro_avg_recall": 0.5065324815459695,
+                "macro_avg_f1-score": 0.5000668243153984,
+                "weighted_avg_precision": 0.5070842820714809,
+                "weighted_avg_recall": 0.5042950985346134,
+                "weighted_avg_f1-score": 0.4990678364504191,
+                "roc_auc_score": 0.52393097416027,
+                "confusion_matrix": [
+                    [
+                        590,
+                        378
+                    ],
+                    [
+                        603,
+                        408
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.4945515507124895,
+                    "recall": 0.609504132231405,
+                    "f1-score": 0.5460434983803795,
+                    "support": 968.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.5190839694656488,
+                    "recall": 0.4035608308605341,
+                    "f1-score": 0.4540901502504174,
+                    "support": 1011.0
+                },
+                "support_class_0": 968.0,
+                "support_class_1": 1011.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 1.0,
+                "roc_auc_score": 1.0,
+                "precision_class_1": 1.0,
+                "recall_class_1": 1.0,
+                "f1_score_class_1": 1.0,
+                "confusion_matrix": [
+                    [
+                        34,
+                        0
+                    ],
+                    [
+                        0,
+                        26
+                    ]
+                ],
+                "total_evaluated_days": 60,
+                "actual_rise_signals": 26,
+                "predicted_rise_signals": 26,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.4778493163388897
+            }
+        },
+        "120d": {
+            "training_evaluation": {
+                "accuracy": 0.5866599292572006,
+                "macro_avg_precision": 0.5869710899989784,
+                "macro_avg_recall": 0.5870911973812081,
+                "macro_avg_f1-score": 0.5865939564065319,
+                "weighted_avg_precision": 0.5878187347783043,
+                "weighted_avg_recall": 0.5866599292572006,
+                "weighted_avg_f1-score": 0.5868024306146451,
+                "roc_auc_score": 0.603353281162089,
+                "confusion_matrix": [
+                    [
+                        593,
+                        436
+                    ],
+                    [
+                        382,
+                        568
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.6082051282051282,
+                    "recall": 0.576287657920311,
+                    "f1-score": 0.591816367265469,
+                    "support": 1029.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.5657370517928287,
+                    "recall": 0.5978947368421053,
+                    "f1-score": 0.5813715455475946,
+                    "support": 950.0
+                },
+                "support_class_0": 1029.0,
+                "support_class_1": 950.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.7916666666666666,
+                "roc_auc_score": 0.6789565724278636,
+                "precision_class_1": 0.6527777777777778,
+                "recall_class_1": 1.0,
+                "f1_score_class_1": 0.7899159663865546,
+                "confusion_matrix": [
+                    [
+                        48,
+                        25
+                    ],
+                    [
+                        0,
+                        47
+                    ]
+                ],
+                "total_evaluated_days": 120,
+                "actual_rise_signals": 47,
+                "predicted_rise_signals": 72,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.3845683338914598
+            }
+        }
+    },
+    "SOUN": {
+        "14d": {
+            "training_evaluation": {
+                "accuracy": 0.5253164556962026,
+                "macro_avg_precision": 0.5245310245310245,
+                "macro_avg_recall": 0.5246138996138996,
+                "macro_avg_f1-score": 0.5243829018663455,
+                "weighted_avg_precision": 0.5264946024439696,
+                "weighted_avg_recall": 0.5253164556962026,
+                "weighted_avg_f1-score": 0.5257165501947125,
+                "roc_auc_score": 0.47747747747747743,
+                "confusion_matrix": [
+                    [
+                        38,
+                        36
+                    ],
+                    [
+                        39,
+                        45
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.4935064935064935,
+                    "recall": 0.5135135135135135,
+                    "f1-score": 0.5033112582781457,
+                    "support": 74.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.5555555555555556,
+                    "recall": 0.5357142857142857,
+                    "f1-score": 0.5454545454545454,
+                    "support": 84.0
+                },
+                "support_class_0": 74.0,
+                "support_class_1": 84.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 1.0,
+                "roc_auc_score": NaN,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        14,
+                        0
+                    ],
+                    [
+                        0,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 14,
+                "actual_rise_signals": 0,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.47298574261606796
+            }
+        },
+        "30d": {
+            "training_evaluation": {
+                "accuracy": 0.5632911392405063,
+                "macro_avg_precision": 0.5542772861356933,
+                "macro_avg_recall": 0.5445736434108527,
+                "macro_avg_f1-score": 0.5317613709573509,
+                "weighted_avg_precision": 0.5561330794219782,
+                "weighted_avg_recall": 0.5632911392405063,
+                "weighted_avg_f1-score": 0.5425276332979405,
+                "roc_auc_score": 0.628310723514212,
+                "confusion_matrix": [
+                    [
+                        65,
+                        21
+                    ],
+                    [
+                        48,
+                        24
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.5752212389380531,
+                    "recall": 0.7558139534883721,
+                    "f1-score": 0.6532663316582915,
+                    "support": 86.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.5333333333333333,
+                    "recall": 0.3333333333333333,
+                    "f1-score": 0.41025641025641024,
+                    "support": 72.0
+                },
+                "support_class_0": 86.0,
+                "support_class_1": 72.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.9333333333333333,
+                "roc_auc_score": 0.7410714285714286,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        28,
+                        0
+                    ],
+                    [
+                        2,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 30,
+                "actual_rise_signals": 2,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.25388059057108664
+            }
+        },
+        "60d": {
+            "training_evaluation": {
+                "accuracy": 0.6835443037974683,
+                "macro_avg_precision": 0.7025058275058275,
+                "macro_avg_recall": 0.6167674731182796,
+                "macro_avg_f1-score": 0.6062599681020734,
+                "weighted_avg_precision": 0.6964238293352217,
+                "weighted_avg_recall": 0.6835443037974683,
+                "weighted_avg_f1-score": 0.6437980740112652,
+                "roc_auc_score": 0.6286122311827957,
+                "confusion_matrix": [
+                    [
+                        89,
+                        7
+                    ],
+                    [
+                        43,
+                        19
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.6742424242424242,
+                    "recall": 0.9270833333333334,
+                    "f1-score": 0.7807017543859649,
+                    "support": 96.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.7307692307692307,
+                    "recall": 0.3064516129032258,
+                    "f1-score": 0.4318181818181818,
+                    "support": 62.0
+                },
+                "support_class_0": 96.0,
+                "support_class_1": 62.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.6333333333333333,
+                "roc_auc_score": 0.8391203703703705,
+                "precision_class_1": 0.75,
+                "recall_class_1": 0.125,
+                "f1_score_class_1": 0.21428571428571427,
+                "confusion_matrix": [
+                    [
+                        35,
+                        1
+                    ],
+                    [
+                        21,
+                        3
+                    ]
+                ],
+                "total_evaluated_days": 60,
+                "actual_rise_signals": 24,
+                "predicted_rise_signals": 4,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.24267822838826975
+            }
+        },
+        "120d": {
+            "training_evaluation": {
+                "accuracy": 0.9177215189873418,
+                "macro_avg_precision": 0.954225352112676,
+                "macro_avg_recall": 0.7758620689655172,
+                "macro_avg_f1-score": 0.8315703157031571,
+                "weighted_avg_precision": 0.9252540559814584,
+                "weighted_avg_recall": 0.9177215189873418,
+                "weighted_avg_f1-score": 0.9078103186095151,
+                "roc_auc_score": 0.6827051590483827,
+                "confusion_matrix": [
+                    [
+                        129,
+                        0
+                    ],
+                    [
+                        13,
+                        16
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.9084507042253521,
+                    "recall": 1.0,
+                    "f1-score": 0.9520295202952029,
+                    "support": 129.0
+                },
+                "class_1_metrics": {
+                    "precision": 1.0,
+                    "recall": 0.5517241379310345,
+                    "f1-score": 0.7111111111111111,
+                    "support": 29.0
+                },
+                "support_class_0": 129.0,
+                "support_class_1": 29.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.9916666666666667,
+                "roc_auc_score": 0.6428571428571429,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        119,
+                        0
+                    ],
+                    [
+                        1,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 120,
+                "actual_rise_signals": 1,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.2510230185681958
+            }
+        }
+    },
+    "SOXL": {
+        "14d": {
+            "training_evaluation": {
+                "accuracy": 0.5942782834850455,
+                "macro_avg_precision": 0.5574572375780503,
+                "macro_avg_recall": 0.5397076393281327,
+                "macro_avg_f1-score": 0.5231500620090946,
+                "weighted_avg_precision": 0.5697860821626398,
+                "weighted_avg_recall": 0.5942782834850455,
+                "weighted_avg_f1-score": 0.5588339172276693,
+                "roc_auc_score": 0.5850165155668002,
+                "confusion_matrix": [
+                    [
+                        80,
+                        230
+                    ],
+                    [
+                        82,
+                        377
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.49382716049382713,
+                    "recall": 0.25806451612903225,
+                    "f1-score": 0.3389830508474576,
+                    "support": 310.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.6210873146622735,
+                    "recall": 0.8213507625272332,
+                    "f1-score": 0.7073170731707317,
+                    "support": 459.0
+                },
+                "support_class_0": 310.0,
+                "support_class_1": 459.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.9285714285714286,
+                "roc_auc_score": 1.0,
+                "precision_class_1": 0.8333333333333334,
+                "recall_class_1": 1.0,
+                "f1_score_class_1": 0.9090909090909091,
+                "confusion_matrix": [
+                    [
+                        8,
+                        1
+                    ],
+                    [
+                        0,
+                        5
+                    ]
+                ],
+                "total_evaluated_days": 14,
+                "actual_rise_signals": 5,
+                "predicted_rise_signals": 6,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.4658291114880373
+            }
+        },
+        "30d": {
+            "training_evaluation": {
+                "accuracy": 0.576072821846554,
+                "macro_avg_precision": 0.5593901037952619,
+                "macro_avg_recall": 0.5412164577147256,
+                "macro_avg_f1-score": 0.5189470694789844,
+                "weighted_avg_precision": 0.563127340864489,
+                "weighted_avg_recall": 0.576072821846554,
+                "weighted_avg_f1-score": 0.5398572505342835,
+                "roc_auc_score": 0.5124202683382822,
+                "confusion_matrix": [
+                    [
+                        89,
+                        247
+                    ],
+                    [
+                        79,
+                        354
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.5297619047619048,
+                    "recall": 0.2648809523809524,
+                    "f1-score": 0.3531746031746032,
+                    "support": 336.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.589018302828619,
+                    "recall": 0.8175519630484989,
+                    "f1-score": 0.6847195357833655,
+                    "support": 433.0
+                },
+                "support_class_0": 336.0,
+                "support_class_1": 433.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.6666666666666666,
+                "roc_auc_score": 0.6028708133971292,
+                "precision_class_1": 0.6956521739130435,
+                "recall_class_1": 0.8421052631578947,
+                "f1_score_class_1": 0.7619047619047619,
+                "confusion_matrix": [
+                    [
+                        4,
+                        7
+                    ],
+                    [
+                        3,
+                        16
+                    ]
+                ],
+                "total_evaluated_days": 30,
+                "actual_rise_signals": 19,
+                "predicted_rise_signals": 23,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 1,
+                "most_recent_prediction_proba": 0.5325939390011855
+            }
+        },
+        "60d": {
+            "training_evaluation": {
+                "accuracy": 0.41612483745123535,
+                "macro_avg_precision": 0.41206237851605265,
+                "macro_avg_recall": 0.44624199297977246,
+                "macro_avg_f1-score": 0.3719251653039136,
+                "weighted_avg_precision": 0.41143156191121055,
+                "weighted_avg_recall": 0.41612483745123535,
+                "weighted_avg_f1-score": 0.3556752858379865,
+                "roc_auc_score": 0.4438928117786853,
+                "confusion_matrix": [
+                    [
+                        262,
+                        85
+                    ],
+                    [
+                        364,
+                        58
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.4185303514376997,
+                    "recall": 0.7550432276657061,
+                    "f1-score": 0.538540596094553,
+                    "support": 347.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.40559440559440557,
+                    "recall": 0.13744075829383887,
+                    "f1-score": 0.20530973451327433,
+                    "support": 422.0
+                },
+                "support_class_0": 347.0,
+                "support_class_1": 422.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.35,
+                "roc_auc_score": 0.46520146520146516,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        21,
+                        0
+                    ],
+                    [
+                        39,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 60,
+                "actual_rise_signals": 39,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.47540188642035347
+            }
+        },
+        "120d": {
+            "training_evaluation": {
+                "accuracy": 0.5604681404421327,
+                "macro_avg_precision": 0.5592525643181436,
+                "macro_avg_recall": 0.5572742418290916,
+                "macro_avg_f1-score": 0.5550317049454236,
+                "weighted_avg_precision": 0.5594820786912045,
+                "weighted_avg_recall": 0.5604681404421327,
+                "weighted_avg_f1-score": 0.5567585726914371,
+                "roc_auc_score": 0.510280513077517,
+                "confusion_matrix": [
+                    [
+                        173,
+                        198
+                    ],
+                    [
+                        140,
+                        258
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.5527156549520766,
+                    "recall": 0.46630727762803237,
+                    "f1-score": 0.5058479532163743,
+                    "support": 371.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.5657894736842105,
+                    "recall": 0.6482412060301508,
+                    "f1-score": 0.6042154566744731,
+                    "support": 398.0
+                },
+                "support_class_0": 371.0,
+                "support_class_1": 398.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.2833333333333333,
+                "roc_auc_score": 0.18391980360065466,
+                "precision_class_1": 0.045454545454545456,
+                "recall_class_1": 0.11538461538461539,
+                "f1_score_class_1": 0.06521739130434782,
+                "confusion_matrix": [
+                    [
+                        31,
+                        63
+                    ],
+                    [
+                        23,
+                        3
+                    ]
+                ],
+                "total_evaluated_days": 120,
+                "actual_rise_signals": 26,
+                "predicted_rise_signals": 66,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.452206900152209
+            }
+        }
+    },
+    "1547": {
+        "14d": {
+            "training_evaluation": {
+                "accuracy": 0.554016620498615,
+                "macro_avg_precision": 0.5518677660356908,
+                "macro_avg_recall": 0.5515659516167517,
+                "macro_avg_f1-score": 0.55150780912402,
+                "weighted_avg_precision": 0.553131798072705,
+                "weighted_avg_recall": 0.554016620498615,
+                "weighted_avg_f1-score": 0.5533661879200164,
+                "roc_auc_score": 0.5840780166408818,
+                "confusion_matrix": [
+                    [
+                        173,
+                        168
+                    ],
+                    [
+                        154,
+                        227
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.5290519877675841,
+                    "recall": 0.5073313782991202,
+                    "f1-score": 0.5179640718562875,
+                    "support": 341.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.5746835443037974,
+                    "recall": 0.5958005249343832,
+                    "f1-score": 0.5850515463917526,
+                    "support": 381.0
+                },
+                "support_class_0": 341.0,
+                "support_class_1": 381.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.8571428571428571,
+                "roc_auc_score": 1.0,
+                "precision_class_1": 0.3333333333333333,
+                "recall_class_1": 1.0,
+                "f1_score_class_1": 0.5,
+                "confusion_matrix": [
+                    [
+                        11,
+                        2
+                    ],
+                    [
+                        0,
+                        1
+                    ]
+                ],
+                "total_evaluated_days": 14,
+                "actual_rise_signals": 1,
+                "predicted_rise_signals": 3,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.43465719380682954
+            }
+        },
+        "30d": {
+            "training_evaluation": {
+                "accuracy": 0.5664819944598338,
+                "macro_avg_precision": 0.5767621064034072,
+                "macro_avg_recall": 0.5719007502152257,
+                "macro_avg_f1-score": 0.5614945037886505,
+                "weighted_avg_precision": 0.5784382116115985,
+                "weighted_avg_recall": 0.5664819944598338,
+                "weighted_avg_f1-score": 0.5595513256050727,
+                "roc_auc_score": 0.5949952342885254,
+                "confusion_matrix": [
+                    [
+                        243,
+                        103
+                    ],
+                    [
+                        210,
+                        166
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.5364238410596026,
+                    "recall": 0.7023121387283237,
+                    "f1-score": 0.6082603254067585,
+                    "support": 346.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.6171003717472119,
+                    "recall": 0.44148936170212766,
+                    "f1-score": 0.5147286821705427,
+                    "support": 376.0
+                },
+                "support_class_0": 346.0,
+                "support_class_1": 376.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.7,
+                "roc_auc_score": NaN,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        21,
+                        9
+                    ],
+                    [
+                        0,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 30,
+                "actual_rise_signals": 0,
+                "predicted_rise_signals": 9,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.4261689369614422
+            }
+        },
+        "60d": {
+            "training_evaluation": {
+                "accuracy": 0.631578947368421,
+                "macro_avg_precision": 0.6324406592055097,
+                "macro_avg_recall": 0.6323348694316436,
+                "macro_avg_f1-score": 0.6315676389112702,
+                "weighted_avg_precision": 0.6330725812193748,
+                "weighted_avg_recall": 0.631578947368421,
+                "weighted_avg_f1-score": 0.6315054423969406,
+                "roc_auc_score": 0.6019201228878648,
+                "confusion_matrix": [
+                    [
+                        230,
+                        120
+                    ],
+                    [
+                        146,
+                        226
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.6117021276595744,
+                    "recall": 0.6571428571428571,
+                    "f1-score": 0.6336088154269972,
+                    "support": 350.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.653179190751445,
+                    "recall": 0.6075268817204301,
+                    "f1-score": 0.6295264623955432,
+                    "support": 372.0
+                },
+                "support_class_0": 350.0,
+                "support_class_1": 372.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.7,
+                "roc_auc_score": 0.7692307692307693,
+                "precision_class_1": 0.5384615384615384,
+                "recall_class_1": 1.0,
+                "f1_score_class_1": 0.7,
+                "confusion_matrix": [
+                    [
+                        21,
+                        18
+                    ],
+                    [
+                        0,
+                        21
+                    ]
+                ],
+                "total_evaluated_days": 60,
+                "actual_rise_signals": 21,
+                "predicted_rise_signals": 39,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.49026905578945146
+            }
+        },
+        "120d": {
+            "training_evaluation": {
+                "accuracy": 0.5484764542936288,
+                "macro_avg_precision": 0.6608164948453608,
+                "macro_avg_recall": 0.5752015118207412,
+                "macro_avg_f1-score": 0.4934314738292011,
+                "weighted_avg_precision": 0.6718802867178799,
+                "weighted_avg_recall": 0.5484764542936288,
+                "weighted_avg_f1-score": 0.48140483944201523,
+                "roc_auc_score": 0.39940221373751406,
+                "confusion_matrix": [
+                    [
+                        317,
+                        18
+                    ],
+                    [
+                        308,
+                        79
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.5072,
+                    "recall": 0.9462686567164179,
+                    "f1-score": 0.6604166666666667,
+                    "support": 335.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.8144329896907216,
+                    "recall": 0.2041343669250646,
+                    "f1-score": 0.32644628099173556,
+                    "support": 387.0
+                },
+                "support_class_0": 335.0,
+                "support_class_1": 387.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.8916666666666667,
+                "roc_auc_score": 0.7713874910136593,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        107,
+                        0
+                    ],
+                    [
+                        13,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 120,
+                "actual_rise_signals": 13,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.484355557089486
+            }
+        }
+    },
+    "NVDA": {
+        "14d": {
+            "training_evaluation": {
+                "accuracy": 0.43867569601203915,
+                "macro_avg_precision": 0.21933784800601958,
+                "macro_avg_recall": 0.5,
+                "macro_avg_f1-score": 0.3049163179916318,
+                "weighted_avg_precision": 0.19243636627164698,
+                "weighted_avg_recall": 0.43867569601203915,
+                "weighted_avg_f1-score": 0.2675187560408147,
+                "roc_auc_score": 0.586248442235088,
+                "confusion_matrix": [
+                    [
+                        583,
+                        0
+                    ],
+                    [
+                        746,
+                        0
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.43867569601203915,
+                    "recall": 1.0,
+                    "f1-score": 0.6098326359832636,
+                    "support": 583.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "f1-score": 0.0,
+                    "support": 746.0
+                },
+                "support_class_0": 583.0,
+                "support_class_1": 746.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 1.0,
+                "roc_auc_score": NaN,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        14,
+                        0
+                    ],
+                    [
+                        0,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 14,
+                "actual_rise_signals": 0,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.461313239559569
+            }
+        },
+        "30d": {
+            "training_evaluation": {
+                "accuracy": 0.436418359668924,
+                "macro_avg_precision": 0.218209179834462,
+                "macro_avg_recall": 0.5,
+                "macro_avg_f1-score": 0.3038239916186485,
+                "weighted_avg_precision": 0.1904609846561143,
+                "weighted_avg_recall": 0.436418359668924,
+                "weighted_avg_f1-score": 0.265188736100551,
+                "roc_auc_score": 0.5,
+                "confusion_matrix": [
+                    [
+                        580,
+                        0
+                    ],
+                    [
+                        749,
+                        0
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.436418359668924,
+                    "recall": 1.0,
+                    "f1-score": 0.607647983237297,
+                    "support": 580.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "f1-score": 0.0,
+                    "support": 749.0
+                },
+                "support_class_0": 580.0,
+                "support_class_1": 749.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.9,
+                "roc_auc_score": 0.5,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        27,
+                        0
+                    ],
+                    [
+                        3,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 30,
+                "actual_rise_signals": 3,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.4650325102636428
+            }
+        },
+        "60d": {
+            "training_evaluation": {
+                "accuracy": 0.5590669676448458,
+                "macro_avg_precision": 0.7478485370051635,
+                "macro_avg_recall": 0.6108897742363878,
+                "macro_avg_f1-score": 0.5129371591534497,
+                "weighted_avg_precision": 0.7814307860270492,
+                "weighted_avg_recall": 0.5590669676448458,
+                "weighted_avg_f1-score": 0.49297389239800454,
+                "roc_auc_score": 0.649402390438247,
+                "confusion_matrix": [
+                    [
+                        576,
+                        0
+                    ],
+                    [
+                        586,
+                        167
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.49569707401032703,
+                    "recall": 1.0,
+                    "f1-score": 0.6628308400460299,
+                    "support": 576.0
+                },
+                "class_1_metrics": {
+                    "precision": 1.0,
+                    "recall": 0.22177954847277556,
+                    "f1-score": 0.3630434782608696,
+                    "support": 753.0
+                },
+                "support_class_0": 576.0,
+                "support_class_1": 753.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.4666666666666667,
+                "roc_auc_score": 0.5,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        28,
+                        0
+                    ],
+                    [
+                        32,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 60,
+                "actual_rise_signals": 32,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.4017610840814414
+            }
+        },
+        "120d": {
+            "training_evaluation": {
+                "accuracy": 0.5146726862302483,
+                "macro_avg_precision": 0.595798078302022,
+                "macro_avg_recall": 0.5552725935460145,
+                "macro_avg_f1-score": 0.47715621483313564,
+                "weighted_avg_precision": 0.6107593476302644,
+                "weighted_avg_recall": 0.5146726862302483,
+                "weighted_avg_f1-score": 0.460189496027138,
+                "roc_auc_score": 0.5592304863473384,
+                "confusion_matrix": [
+                    [
+                        520,
+                        64
+                    ],
+                    [
+                        581,
+                        164
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.47229791099000906,
+                    "recall": 0.8904109589041096,
+                    "f1-score": 0.6172106824925816,
+                    "support": 584.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.7192982456140351,
+                    "recall": 0.22013422818791947,
+                    "f1-score": 0.3371017471736896,
+                    "support": 745.0
+                },
+                "support_class_0": 584.0,
+                "support_class_1": 745.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.9,
+                "roc_auc_score": 0.5,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        108,
+                        0
+                    ],
+                    [
+                        12,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 120,
+                "actual_rise_signals": 12,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.4606660212110204
+            }
+        }
+    },
+    "MSTR": {
+        "14d": {
+            "training_evaluation": {
+                "accuracy": 0.5963235294117647,
+                "macro_avg_precision": 0.47379619879235346,
+                "macro_avg_recall": 0.483882549293588,
+                "macro_avg_f1-score": 0.461236117615394,
+                "weighted_avg_precision": 0.5338533586583232,
+                "weighted_avg_recall": 0.5963235294117647,
+                "weighted_avg_f1-score": 0.5501041946855468,
+                "roc_auc_score": 0.45456717706877814,
+                "confusion_matrix": [
+                    [
+                        65,
+                        391
+                    ],
+                    [
+                        158,
+                        746
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.2914798206278027,
+                    "recall": 0.1425438596491228,
+                    "f1-score": 0.19145802650957292,
+                    "support": 456.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.6561125769569042,
+                    "recall": 0.8252212389380531,
+                    "f1-score": 0.7310142087212151,
+                    "support": 904.0
+                },
+                "support_class_0": 456.0,
+                "support_class_1": 904.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.0,
+                "roc_auc_score": NaN,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        0,
+                        14
+                    ],
+                    [
+                        0,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 14,
+                "actual_rise_signals": 0,
+                "predicted_rise_signals": 14,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 1,
+                "most_recent_prediction_proba": 0.5269965177226573
+            }
+        },
+        "30d": {
+            "training_evaluation": {
+                "accuracy": 0.30220588235294116,
+                "macro_avg_precision": 0.15110294117647058,
+                "macro_avg_recall": 0.5,
+                "macro_avg_f1-score": 0.23207227555053642,
+                "weighted_avg_precision": 0.09132839532871972,
+                "weighted_avg_recall": 0.30220588235294116,
+                "weighted_avg_f1-score": 0.1402672136048095,
+                "roc_auc_score": 0.44750396755196276,
+                "confusion_matrix": [
+                    [
+                        411,
+                        0
+                    ],
+                    [
+                        949,
+                        0
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.30220588235294116,
+                    "recall": 1.0,
+                    "f1-score": 0.46414455110107283,
+                    "support": 411.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "f1-score": 0.0,
+                    "support": 949.0
+                },
+                "support_class_0": 411.0,
+                "support_class_1": 949.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 1.0,
+                "roc_auc_score": NaN,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        30,
+                        0
+                    ],
+                    [
+                        0,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 30,
+                "actual_rise_signals": 0,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.435371950068448
+            }
+        },
+        "60d": {
+            "training_evaluation": {
+                "accuracy": 0.26544117647058824,
+                "macro_avg_precision": 0.13272058823529412,
+                "macro_avg_recall": 0.5,
+                "macro_avg_f1-score": 0.20976176641487507,
+                "weighted_avg_precision": 0.07045901816608997,
+                "weighted_avg_recall": 0.26544117647058824,
+                "weighted_avg_f1-score": 0.11135882011142631,
+                "roc_auc_score": 0.46469877079295363,
+                "confusion_matrix": [
+                    [
+                        361,
+                        0
+                    ],
+                    [
+                        999,
+                        0
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.26544117647058824,
+                    "recall": 1.0,
+                    "f1-score": 0.41952353282975013,
+                    "support": 361.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "f1-score": 0.0,
+                    "support": 999.0
+                },
+                "support_class_0": 361.0,
+                "support_class_1": 999.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.65,
+                "roc_auc_score": 0.5,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        39,
+                        0
+                    ],
+                    [
+                        21,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 60,
+                "actual_rise_signals": 21,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.4553602109919789
+            }
+        },
+        "120d": {
+            "training_evaluation": {
+                "accuracy": 0.25441176470588234,
+                "macro_avg_precision": 0.12720588235294117,
+                "macro_avg_recall": 0.5,
+                "macro_avg_f1-score": 0.20281359906213364,
+                "weighted_avg_precision": 0.06472534602076124,
+                "weighted_avg_recall": 0.25441176470588234,
+                "weighted_avg_f1-score": 0.10319633128749742,
+                "roc_auc_score": 0.3880898633010683,
+                "confusion_matrix": [
+                    [
+                        346,
+                        0
+                    ],
+                    [
+                        1014,
+                        0
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.25441176470588234,
+                    "recall": 1.0,
+                    "f1-score": 0.4056271981242673,
+                    "support": 346.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "f1-score": 0.0,
+                    "support": 1014.0
+                },
+                "support_class_0": 346.0,
+                "support_class_1": 1014.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.5083333333333333,
+                "roc_auc_score": 0.5,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        61,
+                        0
+                    ],
+                    [
+                        59,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 120,
+                "actual_rise_signals": 59,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.4225441219509512
+            }
+        }
+    },
+    "QQQ": {
+        "14d": {
+            "training_evaluation": {
+                "accuracy": 0.4973544973544973,
+                "macro_avg_precision": 0.45867080570057855,
+                "macro_avg_recall": 0.4658497341665889,
+                "macro_avg_f1-score": 0.45163783458665363,
+                "weighted_avg_precision": 0.47120780802169265,
+                "weighted_avg_recall": 0.4973544973544973,
+                "weighted_avg_f1-score": 0.47401745745991747,
+                "roc_auc_score": 0.39863468892827164,
+                "confusion_matrix": [
+                    [
+                        138,
+                        430
+                    ],
+                    [
+                        235,
+                        520
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.3699731903485255,
+                    "recall": 0.24295774647887325,
+                    "f1-score": 0.29330499468650373,
+                    "support": 568.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.5473684210526316,
+                    "recall": 0.6887417218543046,
+                    "f1-score": 0.6099706744868035,
+                    "support": 755.0
+                },
+                "support_class_0": 568.0,
+                "support_class_1": 755.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.0,
+                "roc_auc_score": NaN,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        0,
+                        14
+                    ],
+                    [
+                        0,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 14,
+                "actual_rise_signals": 0,
+                "predicted_rise_signals": 14,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 1,
+                "most_recent_prediction_proba": 0.5297328058335142
+            }
+        },
+        "30d": {
+            "training_evaluation": {
+                "accuracy": 0.5230536659108088,
+                "macro_avg_precision": 0.4942960505619584,
+                "macro_avg_recall": 0.49537174548661067,
+                "macro_avg_f1-score": 0.4806584362139918,
+                "weighted_avg_precision": 0.5022007576477301,
+                "weighted_avg_recall": 0.5230536659108088,
+                "weighted_avg_f1-score": 0.4989399770620901,
+                "roc_auc_score": 0.4295365944214972,
+                "confusion_matrix": [
+                    [
+                        157,
+                        423
+                    ],
+                    [
+                        208,
+                        535
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.4301369863013699,
+                    "recall": 0.2706896551724138,
+                    "f1-score": 0.3322751322751323,
+                    "support": 580.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.558455114822547,
+                    "recall": 0.7200538358008075,
+                    "f1-score": 0.6290417401528513,
+                    "support": 743.0
+                },
+                "support_class_0": 580.0,
+                "support_class_1": 743.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.8666666666666667,
+                "roc_auc_score": 0.23076923076923078,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        26,
+                        0
+                    ],
+                    [
+                        4,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 30,
+                "actual_rise_signals": 4,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.4877930165581647
+            }
+        },
+        "60d": {
+            "training_evaluation": {
+                "accuracy": 0.5419501133786848,
+                "macro_avg_precision": 0.5597782972092364,
+                "macro_avg_recall": 0.5597450067960432,
+                "macro_avg_f1-score": 0.5419498516849413,
+                "weighted_avg_precision": 0.5774560322310914,
+                "weighted_avg_recall": 0.5419501133786848,
+                "weighted_avg_f1-score": 0.5418883536552257,
+                "roc_auc_score": 0.6237575983538473,
+                "confusion_matrix": [
+                    [
+                        359,
+                        185
+                    ],
+                    [
+                        421,
+                        358
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.46025641025641023,
+                    "recall": 0.6599264705882353,
+                    "f1-score": 0.5422960725075529,
+                    "support": 544.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.6593001841620626,
+                    "recall": 0.4595635430038511,
+                    "f1-score": 0.5416036308623298,
+                    "support": 779.0
+                },
+                "support_class_0": 544.0,
+                "support_class_1": 779.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.06666666666666667,
+                "roc_auc_score": 0.06473214285714288,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        4,
+                        24
+                    ],
+                    [
+                        32,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 60,
+                "actual_rise_signals": 32,
+                "predicted_rise_signals": 24,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 1,
+                "most_recent_prediction_proba": 0.5494962239532832
+            }
+        },
+        "120d": {
+            "training_evaluation": {
+                "accuracy": 0.5192743764172335,
+                "macro_avg_precision": 0.526647906638565,
+                "macro_avg_recall": 0.5272992772992773,
+                "macro_avg_f1-score": 0.518250231305479,
+                "weighted_avg_precision": 0.5422743789424875,
+                "weighted_avg_recall": 0.5192743764172335,
+                "weighted_avg_f1-score": 0.5221285513188448,
+                "roc_auc_score": 0.539145110573682,
+                "confusion_matrix": [
+                    [
+                        313,
+                        233
+                    ],
+                    [
+                        403,
+                        374
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.4371508379888268,
+                    "recall": 0.5732600732600732,
+                    "f1-score": 0.4960380348652932,
+                    "support": 546.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.6161449752883031,
+                    "recall": 0.48133848133848134,
+                    "f1-score": 0.5404624277456648,
+                    "support": 777.0
+                },
+                "support_class_0": 546.0,
+                "support_class_1": 777.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.4583333333333333,
+                "roc_auc_score": 0.6953125,
+                "precision_class_1": 0.24691358024691357,
+                "recall_class_1": 0.8333333333333334,
+                "f1_score_class_1": 0.38095238095238093,
+                "confusion_matrix": [
+                    [
+                        35,
+                        61
+                    ],
+                    [
+                        4,
+                        20
+                    ]
+                ],
+                "total_evaluated_days": 120,
+                "actual_rise_signals": 24,
+                "predicted_rise_signals": 81,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 1,
+                "most_recent_prediction_proba": 0.524794983506665
+            }
+        }
+    },
+    "9433": {
+        "14d": {
+            "training_evaluation": {
+                "accuracy": 0.5121759622937941,
+                "macro_avg_precision": 0.4503748949647728,
+                "macro_avg_recall": 0.4550449803044821,
+                "macro_avg_f1-score": 0.45065748099618297,
+                "weighted_avg_precision": 0.4920208008466084,
+                "weighted_avg_recall": 0.5121759622937941,
+                "weighted_avg_f1-score": 0.5001899671113959,
+                "roc_auc_score": 0.4480277866496327,
+                "confusion_matrix": [
+                    [
+                        539,
+                        269
+                    ],
+                    [
+                        352,
+                        113
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.6049382716049383,
+                    "recall": 0.6670792079207921,
+                    "f1-score": 0.6344908769864627,
+                    "support": 808.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.29581151832460734,
+                    "recall": 0.24301075268817204,
+                    "f1-score": 0.2668240850059032,
+                    "support": 465.0
+                },
+                "support_class_0": 808.0,
+                "support_class_1": 465.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.0,
+                "roc_auc_score": NaN,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        0,
+                        14
+                    ],
+                    [
+                        0,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 14,
+                "actual_rise_signals": 0,
+                "predicted_rise_signals": 14,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 1,
+                "most_recent_prediction_proba": 0.6149144725293839
+            }
+        },
+        "30d": {
+            "training_evaluation": {
+                "accuracy": 0.5137470542026709,
+                "macro_avg_precision": 0.4990517964102098,
+                "macro_avg_recall": 0.4990362701215506,
+                "macro_avg_f1-score": 0.4987771359729386,
+                "weighted_avg_precision": 0.5182094885061408,
+                "weighted_avg_recall": 0.5137470542026709,
+                "weighted_avg_f1-score": 0.515720361605681,
+                "roc_auc_score": 0.5443726387976346,
+                "confusion_matrix": [
+                    [
+                        437,
+                        324
+                    ],
+                    [
+                        295,
+                        217
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.5969945355191257,
+                    "recall": 0.5742444152431012,
+                    "f1-score": 0.5853985264567984,
+                    "support": 761.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.4011090573012939,
+                    "recall": 0.423828125,
+                    "f1-score": 0.4121557454890788,
+                    "support": 512.0
+                },
+                "support_class_0": 761.0,
+                "support_class_1": 512.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.3,
+                "roc_auc_score": NaN,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        9,
+                        21
+                    ],
+                    [
+                        0,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 30,
+                "actual_rise_signals": 0,
+                "predicted_rise_signals": 21,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 1,
+                "most_recent_prediction_proba": 0.5899668447637123
+            }
+        },
+        "60d": {
+            "training_evaluation": {
+                "accuracy": 0.5836606441476826,
+                "macro_avg_precision": 0.7890127388535032,
+                "macro_avg_recall": 0.5155393053016454,
+                "macro_avg_f1-score": 0.39643851400190366,
+                "weighted_avg_precision": 0.7593452449452369,
+                "weighted_avg_recall": 0.5836606441476826,
+                "weighted_avg_f1-score": 0.44370616039978017,
+                "roc_auc_score": 0.5042128111764144,
+                "confusion_matrix": [
+                    [
+                        726,
+                        0
+                    ],
+                    [
+                        530,
+                        17
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.5780254777070064,
+                    "recall": 1.0,
+                    "f1-score": 0.7325933400605449,
+                    "support": 726.0
+                },
+                "class_1_metrics": {
+                    "precision": 1.0,
+                    "recall": 0.031078610603290677,
+                    "f1-score": 0.06028368794326241,
+                    "support": 547.0
+                },
+                "support_class_0": 726.0,
+                "support_class_1": 547.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.8166666666666667,
+                "roc_auc_score": 0.5,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        49,
+                        0
+                    ],
+                    [
+                        11,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 60,
+                "actual_rise_signals": 11,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.43615544250274463
+            }
+        },
+        "120d": {
+            "training_evaluation": {
+                "accuracy": 0.6190102120974077,
+                "macro_avg_precision": 0.30950510604870385,
+                "macro_avg_recall": 0.5,
+                "macro_avg_f1-score": 0.3823386705482775,
+                "weighted_avg_precision": 0.38317364268087767,
+                "weighted_avg_recall": 0.6190102120974077,
+                "weighted_avg_f1-score": 0.47334308309826034,
+                "roc_auc_score": 0.5223454916531477,
+                "confusion_matrix": [
+                    [
+                        788,
+                        0
+                    ],
+                    [
+                        485,
+                        0
+                    ]
+                ],
+                "class_0_metrics": {
+                    "precision": 0.6190102120974077,
+                    "recall": 1.0,
+                    "f1-score": 0.764677341096555,
+                    "support": 788.0
+                },
+                "class_1_metrics": {
+                    "precision": 0.0,
+                    "recall": 0.0,
+                    "f1-score": 0.0,
+                    "support": 485.0
+                },
+                "support_class_0": 788.0,
+                "support_class_1": 485.0
+            },
+            "recent_data_evaluation": {
+                "accuracy": 0.9666666666666667,
+                "roc_auc_score": 0.5,
+                "precision_class_1": 0.0,
+                "recall_class_1": 0.0,
+                "f1_score_class_1": 0.0,
+                "confusion_matrix": [
+                    [
+                        116,
+                        0
+                    ],
+                    [
+                        4,
+                        0
+                    ]
+                ],
+                "total_evaluated_days": 120,
+                "actual_rise_signals": 4,
+                "predicted_rise_signals": 0,
+                "most_recent_prediction_date": "2025-06-20",
+                "most_recent_prediction_value": 0,
+                "most_recent_prediction_proba": 0.3590166126533893
+            }
+        }
+    }
+}
