@@ -7,4 +7,6 @@ joblib
 matplotlib
 mplfinance
 seaborn
+requests
 japanize_matplotlib
+setuptools # これを追加
