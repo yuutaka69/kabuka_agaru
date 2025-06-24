@@ -7,14 +7,52 @@ import numpy as np
 import requests
 import json
 from pathlib import Path
-import matplotlib.pyplot as plt
-import mplfinance as mpf # 株価チャート表示用
-import seaborn as sns # 混同行列のヒートマップ用
+import matplotlib.pyplot as plt # ここでpltをインポート
+import mplfinance as mpf
+import seaborn as sns
+
+# --- 日本語フォント設定 ---
+# Streamlit Cloud環境ではシステムフォントを直接指定するのが難しい場合があるため、
+# Google Fontsなどから提供されるフォント（例: Noto Sans JPなど）をダウンロードして配置するか、
+# Matplotlibのデフォルト設定を変更して利用可能なフォントを探す。
+# ここでは汎用的なアプローチとして、システムの日本語フォントを検索して設定する例を示します。
+# 環境によっては追加のフォントインストール（例: !apt-get install -y fonts-ipafont-gothic）が必要。
+import matplotlib.font_manager as fm
+
+@st.cache_resource
+def set_japanese_font():
+    try:
+        # よく使われる日本語フォントのパスをリストアップ (環境依存)
+        font_paths = [
+            '/usr/share/fonts/opentype/noto/NotoSansCJKjp-Regular.otf', # Noto Sans JP (Debian/Ubuntu)
+            '/usr/share/fonts/truetype/fonts-japanese-gothic.ttf', # IPAex Gothic (Debian/Ubuntu)
+            '/System/Library/Fonts/ヒラギノ角ゴシック W4.ttc', # macOS
+            '/Library/Fonts/Microsoft Sans Serif.ttf', # Windows
+        ]
+        
+        found_font = None
+        for path in font_paths:
+            if Path(path).exists():
+                found_font = path
+                break
+        
+        if found_font:
+            fm.fontManager.addfont(found_font)
+            plt.rcParams['font.family'] = fm.FontProperties(fname=found_font).get_name()
+            st.sidebar.success(f"日本語フォント '{Path(found_font).name}' を設定しました。")
+        else:
+            st.sidebar.warning("日本語フォントが見つかりませんでした。グラフの日本語が文字化けする可能性があります。")
+            plt.rcParams['font.family'] = 'sans-serif' # デフォルトに戻す
+            plt.rcParams['font.sans-serif'] = ['DejaVu Sans'] # fall back to a common font
+    except Exception as e:
+        st.sidebar.error(f"日本語フォント設定中にエラーが発生しました: {e}")
+        plt.rcParams['font.family'] = 'sans-serif'
+        plt.rcParams['font.sans-serif'] = ['DejaVu Sans']
+
+set_japanese_font() # アプリ起動時にフォント設定を実行
 
 # --- 設定 ---
-# GitHub raw content URLのベース
 GITHUB_RAW_URL_BASE = "https://raw.githubusercontent.com/yuutaka69/kabuka_agaru/main/"
-# 全体のモデル性能JSONファイルへのURL
 ALL_PERFORMANCE_JSON_URL = f"{GITHUB_RAW_URL_BASE}models/all_stock_model_performance.json"
 
 # --- 関数: データロード (キャッシュ付き) ---
@@ -52,7 +90,6 @@ def load_model_and_features_from_github(stock_code, target_period):
         response = requests.get(model_url)
         response.raise_for_status() # HTTPエラーを確認
         
-        # joblib.load はファイルパスまたはファイルライクオブジェクトを期待するので、BytesIOを使う
         from io import BytesIO
         loaded_content = joblib.load(BytesIO(response.content))
 
@@ -98,7 +135,8 @@ def get_dynamic_threshold_from_metrics(metrics_data):
     if 'target_column_name' in metrics_data:
         full_target_name = metrics_data['target_column_name']
         parts = full_target_name.split('_')
-        if len(parts) > 2 and parts[1].endswith('d'):
+        # parts[2]が存在し、'p'で終わることを確認
+        if len(parts) > 2 and parts[2].endswith('p'):
             return parts[2]
     return "N/A"
 
@@ -278,11 +316,12 @@ with tab2:
             
             training_metrics = model_data.get('training_evaluation', {})
             if training_metrics:
-                col_tr1, col_tr2 = st.columns(2)
-                with col_tr1:
+                # 指標をカラムで表示
+                col_tr_metrics1, col_tr_metrics2 = st.columns(2)
+                with col_tr_metrics1:
                     st.write(f"- **精度 (Accuracy):** `{training_metrics.get('accuracy', np.nan):.2f}`")
                     st.write(f"- **ROC AUC スコア:** `{training_metrics.get('roc_auc_score', np.nan):.2f}`")
-                with col_tr2:
+                with col_tr_metrics2:
                     st.markdown(f"**クラス 1 (上昇する) のメトリクス:**")
                     class_1_train = training_metrics.get('class_1_metrics', {})
                     st.write(f"- 適合率 (Precision): `{class_1_train.get('precision', np.nan):.2f}`")
@@ -311,13 +350,15 @@ with tab2:
             # 直近データ評価と最新予測
             st.markdown("##### 直近データ評価と最新予測")
             
+            recent_metrics = model_data.get('recent_data_evaluation', {})
             if recent_metrics:
-                col_rc1, col_rc2 = st.columns(2)
-                with col_rc1:
+                # 指標をカラムで表示
+                col_rc_metrics1, col_rc_metrics2 = st.columns(2)
+                with col_rc_metrics1:
                     st.write(f"- **評価期間 (日数):** `{recent_metrics.get('total_evaluated_days', 'N/A')}`")
                     st.write(f"- **精度 (Accuracy):** `{recent_metrics.get('accuracy', np.nan):.2f}`")
                     st.write(f"- **ROC AUC スコア:** `{recent_metrics.get('roc_auc_score', np.nan):.2f}`")
-                with col_rc2:
+                with col_rc_metrics2:
                     st.markdown(f"**クラス 1 (上昇する) のメトリクス:**")
                     st.write(f"- 適合率 (Precision): `{recent_metrics.get('precision_class_1', np.nan):.2f}`")
                     st.write(f"- 再現率 (Recall): `{recent_metrics.get('recall_class_1', np.nan):.2f}`")
