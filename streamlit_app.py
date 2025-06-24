@@ -1,4 +1,4 @@
-# streamlit_app.py (全機能を単一ファイルに集約 - グラフ英語表記 & 可読性向上)
+# streamlit_app.py (全機能を単一ファイルに集約 - グラフ英語表記 & 可読性向上 & Plotly混同行列)
 
 import streamlit as st
 import pandas as pd
@@ -10,6 +10,8 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import mplfinance as mpf
 import seaborn as sns
+import plotly.express as px # Plotlyのヒートマップ用
+import plotly.graph_objects as go # Plotlyの混同行列のカスタマイズ用
 
 # --- Settings ---
 GITHUB_RAW_URL_BASE = "https://raw.githubusercontent.com/yuutaka69/kabuka_agaru/main/"
@@ -103,6 +105,7 @@ def get_dynamic_threshold_from_metrics(metrics_data):
 def display_metrics_and_confusion_matrix(metrics, title, is_recent=False):
     """
     Helper function to display metrics and confusion matrix.
+    Metrics are shown with progress bars, and confusion matrix uses Plotly.
     """
     if not metrics:
         st.warning(f"{title} data not found.")
@@ -113,37 +116,61 @@ def display_metrics_and_confusion_matrix(metrics, title, is_recent=False):
     col_m1, col_m2 = st.columns(2)
     with col_m1:
         st.write(f"- **Accuracy:** `{metrics.get('accuracy', np.nan):.2f}`")
+        st.progress(float(metrics.get('accuracy', 0)), text="Accuracy") # Progress bar
         st.write(f"- **ROC AUC Score:** `{metrics.get('roc_auc_score', np.nan):.2f}`")
+        st.progress(float(metrics.get('roc_auc_score', 0)), text="ROC AUC Score") # Progress bar
     with col_m2:
         st.markdown(f"**Class 1 (Uplift) Metrics:**")
-        if is_recent: # Recent data has flat precision_class_1, recall_class_1
+        if is_recent:
             st.write(f"- Precision: `{metrics.get('precision_class_1', np.nan):.2f}`")
+            st.progress(float(metrics.get('precision_class_1', 0)), text="Precision")
             st.write(f"- Recall: `{metrics.get('recall_class_1', np.nan):.2f}`")
+            st.progress(float(metrics.get('recall_class_1', 0)), text="Recall")
             st.write(f"- F1-Score: `{metrics.get('f1_score_class_1', np.nan):.2f}`")
-        else: # Training data has class_1_metrics nested dict
+            st.progress(float(metrics.get('f1_score_class_1', 0)), text="F1-Score")
+        else:
             class_1_metrics = metrics.get('class_1_metrics', {})
             st.write(f"- Precision: `{class_1_metrics.get('precision', np.nan):.2f}`")
+            st.progress(float(class_1_metrics.get('precision', 0)), text="Precision")
             st.write(f"- Recall: `{class_1_metrics.get('recall', np.nan):.2f}`")
+            st.progress(float(class_1_metrics.get('recall', 0)), text="Recall")
             st.write(f"- F1-Score: `{class_1_metrics.get('f1-score', np.nan):.2f}`")
+            st.progress(float(class_1_metrics.get('f1-score', 0)), text="F1-Score")
             
     st.caption(f"※ These metrics are based on the {title.lower()} data.")
 
-    # Confusion Matrix
+    # Confusion Matrix using Plotly
     cm = metrics.get('confusion_matrix', None)
     if cm:
         st.markdown(f"**{title} Confusion Matrix:**")
-        # Adjust figure size for confusion matrix
-        fig_cm, ax_cm = plt.subplots(figsize=(4.5, 3.5)) # Reduced size
-        sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax_cm,
-                    xticklabels=['Predicted: No Rise (0)', 'Predicted: Rise (1)'],
-                    yticklabels=['Actual: No Rise (0)', 'Actual: Rise (1)'])
-        ax_cm.set_title(title)
-        ax_cm.set_ylabel('Actual')
-        ax_cm.set_xlabel('Predicted')
-        st.pyplot(fig_cm)
-        plt.close(fig_cm) # Free up memory
+        cm_df = pd.DataFrame(cm, 
+                             index=['Actual: No Rise (0)', 'Actual: Rise (1)'],
+                             columns=['Predicted: No Rise (0)', 'Predicted: Rise (1)'])
+
+        fig_cm = go.Figure(data=go.Heatmap(
+            z=cm_df.values,
+            x=cm_df.columns,
+            y=cm_df.index,
+            colorscale='Blues',
+            text=cm_df.values,
+            texttemplate="%{text}",
+            textfont={"size":16}
+        ))
+        
+        fig_cm.update_layout(
+            title_text=title,
+            xaxis_title="Predicted",
+            yaxis_title="Actual",
+            xaxis_showgrid=False,
+            yaxis_showgrid=False,
+            yaxis_autorange='reversed', # Ensure 'Actual: No Rise' is at top
+            height=350, # Set a fixed height
+            margin=dict(l=50, r=50, t=50, b=50) # Adjust margins
+        )
+        st.plotly_chart(fig_cm, use_container_width=True)
     else:
         st.warning(f"{title} confusion matrix data not found.")
+
 
 # --- Streamlit UI Setup ---
 
@@ -194,7 +221,7 @@ with tab1:
             
             # Get dynamic threshold (prioritize from training_eval)
             dynamic_threshold_str = get_dynamic_threshold_from_metrics(training_eval)
-            if dynamic_threshold_str == "N/A": # If not in training_eval, check recent_eval
+            if dynamic_threshold_str == "N/A": 
                 dynamic_threshold_str = get_dynamic_threshold_from_metrics(recent_eval)
 
             ranking_data.append({
@@ -290,6 +317,7 @@ with tab2:
         st.warning(f"Error drawing stock chart: {e}")
         st.info("This might be due to insufficient data or an issue with the data format.")
 
+
     st.subheader("Model Performance & Latest Predictions per Period")
 
     periods_data = all_performance_data.get(selected_stock, {})
@@ -302,8 +330,8 @@ with tab2:
             period_str = f"{target_period}d"
             model_data = periods_data[period_str]
 
-            st.markdown(f"---") # Horizontal rule for section separation
-            st.markdown(f"### {target_period}-Day Prediction Model") # Model-specific section heading
+            st.markdown(f"---") 
+            st.markdown(f"### {target_period}-Day Prediction Model") 
 
             # Get dynamic threshold
             dynamic_threshold_str = get_dynamic_threshold_from_metrics(model_data.get('training_evaluation', {}))
@@ -321,13 +349,14 @@ with tab2:
             recent_metrics = model_data.get('recent_data_evaluation', {})
             
             if recent_metrics:
+                # Metrics with progress bars
                 col_rc_metrics1, col_rc_metrics2 = st.columns(2)
                 with col_rc_metrics1:
                     st.write(f"- **Evaluation Period (Days):** `{recent_metrics.get('total_evaluated_days', 'N/A')}`")
                     st.write(f"- **Accuracy:** `{recent_metrics.get('accuracy', np.nan):.2f}`")
-                    st.progress(float(recent_metrics.get('accuracy', 0)), text="Accuracy") # Progress bar for Accuracy
+                    st.progress(float(recent_metrics.get('accuracy', 0)), text="Accuracy")
                     st.write(f"- **ROC AUC Score:** `{recent_metrics.get('roc_auc_score', np.nan):.2f}`")
-                    st.progress(float(recent_metrics.get('roc_auc_score', 0)), text="ROC AUC Score") # Progress bar for ROC AUC
+                    st.progress(float(recent_metrics.get('roc_auc_score', 0)), text="ROC AUC Score")
                 with col_rc_metrics2:
                     st.markdown(f"**Class 1 (Uplift) Metrics:**")
                     st.write(f"- Precision: `{recent_metrics.get('precision_class_1', np.nan):.2f}`")
@@ -343,10 +372,10 @@ with tab2:
                 
                 if prediction_value == 1:
                     st.success(f"**📈 Uplift Signal!** (Stock price likely to rise by {dynamic_threshold_str} or more within {target_period} days)")
-                    st.progress(prediction_proba, text=f"Prediction Probability: {prediction_proba:.2%}") # Progress bar for probability
+                    st.progress(prediction_proba, text=f"Prediction Probability: {prediction_proba:.2%}")
                 elif prediction_value == 0:
                     st.info(f"**📉 No Uplift Signal** (Stock price less likely to rise by {dynamic_threshold_str} or more within {target_period} days)")
-                    st.progress(prediction_proba, text=f"Prediction Probability: {prediction_proba:.2%}") # Progress bar for probability
+                    st.progress(prediction_proba, text=f"Prediction Probability: {prediction_proba:.2%}")
                 else:
                     st.warning("Latest prediction value is not available.")
 
