@@ -9,4 +9,5 @@ mplfinance
 seaborn
 requests
 japanize_matplotlib
-setuptools # これを追加
+setuptools
+plotly
