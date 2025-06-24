@@ -7,49 +7,19 @@ import numpy as np
 import requests
 import json
 from pathlib import Path
-import matplotlib.pyplot as plt # ここでpltをインポート
+import matplotlib.pyplot as plt
 import mplfinance as mpf
 import seaborn as sns
 
-# --- 日本語フォント設定 ---
-# Streamlit Cloud環境ではシステムフォントを直接指定するのが難しい場合があるため、
-# Google Fontsなどから提供されるフォント（例: Noto Sans JPなど）をダウンロードして配置するか、
-# Matplotlibのデフォルト設定を変更して利用可能なフォントを探す。
-# ここでは汎用的なアプローチとして、システムの日本語フォントを検索して設定する例を示します。
-# 環境によっては追加のフォントインストール（例: !apt-get install -y fonts-ipafont-gothic）が必要。
-import matplotlib.font_manager as fm
+# --- 日本語フォントと描画設定 ---
+import japanize_matplotlib # japanize_matplotlibをインポート
 
-@st.cache_resource
-def set_japanese_font():
-    try:
-        # よく使われる日本語フォントのパスをリストアップ (環境依存)
-        font_paths = [
-            '/usr/share/fonts/opentype/noto/NotoSansCJKjp-Regular.otf', # Noto Sans JP (Debian/Ubuntu)
-            '/usr/share/fonts/truetype/fonts-japanese-gothic.ttf', # IPAex Gothic (Debian/Ubuntu)
-            '/System/Library/Fonts/ヒラギノ角ゴシック W4.ttc', # macOS
-            '/Library/Fonts/Microsoft Sans Serif.ttf', # Windows
-        ]
-        
-        found_font = None
-        for path in font_paths:
-            if Path(path).exists():
-                found_font = path
-                break
-        
-        if found_font:
-            fm.fontManager.addfont(found_font)
-            plt.rcParams['font.family'] = fm.FontProperties(fname=found_font).get_name()
-            st.sidebar.success(f"日本語フォント '{Path(found_font).name}' を設定しました。")
-        else:
-            st.sidebar.warning("日本語フォントが見つかりませんでした。グラフの日本語が文字化けする可能性があります。")
-            plt.rcParams['font.family'] = 'sans-serif' # デフォルトに戻す
-            plt.rcParams['font.sans-serif'] = ['DejaVu Sans'] # fall back to a common font
-    except Exception as e:
-        st.sidebar.error(f"日本語フォント設定中にエラーが発生しました: {e}")
-        plt.rcParams['font.family'] = 'sans-serif'
-        plt.rcParams['font.sans-serif'] = ['DejaVu Sans']
+# japanize_matplotlib を呼び出すことで、matplotlibの日本語フォント設定が自動で行われます
+japanize_matplotlib.japanize()
 
-set_japanese_font() # アプリ起動時にフォント設定を実行
+# 必要であれば、japanize_matplotlibが設定するフォントファミリーを上書きすることも可能ですが、
+# 基本的にはjapanize()で十分な場合が多いです。
+# 例: plt.rcParams['font.family'] = 'IPAPGothic'
 
 # --- 設定 ---
 GITHUB_RAW_URL_BASE = "https://raw.githubusercontent.com/yuutaka69/kabuka_agaru/main/"
