@@ -1,4 +1,4 @@
-# streamlit_app.py (全機能を単一ファイルに集約 - 日本語表記)
+# streamlit_app.py (全機能を単一ファイルに集約 - 日本語表記 & 可視性向上)
 
 import streamlit as st
 import pandas as pd
@@ -128,27 +128,18 @@ def display_metrics_and_confusion_matrix(metrics, title, is_recent=False):
     
     col_m1, col_m2 = st.columns(2)
     with col_m1:
-        st.write(f"- **精度 (Accuracy):** `{metrics.get('accuracy', np.nan):.2f}`")
-        st.progress(float(metrics.get('accuracy', 0)), text="精度 (Accuracy)") # プログレスバー
-        st.write(f"- **ROC AUC スコア:** `{metrics.get('roc_auc_score', np.nan):.2f}`")
-        st.progress(float(metrics.get('roc_auc_score', 0)), text="ROC AUC スコア") # プログレスバー
+        st.progress(float(metrics.get('accuracy', 0)), text=f"精度: {metrics.get('accuracy', np.nan):.2f}")
+        st.progress(float(metrics.get('roc_auc_score', 0)), text=f"ROC AUC: {metrics.get('roc_auc_score', np.nan):.2f}")
     with col_m2:
-        st.markdown(f"**クラス 1 (上昇) の指標:**")
         if is_recent: # 直近データの場合
-            st.write(f"- 適合率 (Precision): `{metrics.get('precision_class_1', np.nan):.2f}`")
-            st.progress(float(metrics.get('precision_class_1', 0)), text="適合率")
-            st.write(f"- 再現率 (Recall): `{metrics.get('recall_class_1', np.nan):.2f}`")
-            st.progress(float(metrics.get('recall_class_1', 0)), text="再現率")
-            st.write(f"- F1スコア: `{metrics.get('f1_score_class_1', np.nan):.2f}`")
-            st.progress(float(metrics.get('f1_score_class_1', 0)), text="F1スコア")
+            st.progress(float(metrics.get('precision_class_1', 0)), text=f"適合率(クラス1): {metrics.get('precision_class_1', np.nan):.2f}")
+            st.progress(float(metrics.get('recall_class_1', 0)), text=f"再現率(クラス1): {metrics.get('recall_class_1', np.nan):.2f}")
+            st.progress(float(metrics.get('f1_score_class_1', 0)), text=f"F1スコア(クラス1): {metrics.get('f1_score_class_1', np.nan):.2f}")
         else: # 訓練データの場合
             class_1_metrics = metrics.get('class_1_metrics', {})
-            st.write(f"- 適合率 (Precision): `{class_1_metrics.get('precision', np.nan):.2f}`")
-            st.progress(float(class_1_metrics.get('precision', 0)), text="適合率")
-            st.write(f"- 再現率 (Recall): `{class_1_metrics.get('recall', np.nan):.2f}`")
-            st.progress(float(class_1_metrics.get('recall', 0)), text="再現率")
-            st.write(f"- F1スコア: `{class_1_metrics.get('f1-score', np.nan):.2f}`")
-            st.progress(float(class_1_metrics.get('f1-score', 0)), text="F1スコア")
+            st.progress(float(class_1_metrics.get('precision', 0)), text=f"適合率(クラス1): {class_1_metrics.get('precision', np.nan):.2f}")
+            st.progress(float(class_1_metrics.get('recall', 0)), text=f"再現率(クラス1): {class_1_metrics.get('recall', np.nan):.2f}")
+            st.progress(float(class_1_metrics.get('f1-score', 0)), text=f"F1スコア(クラス1): {class_1_metrics.get('f1-score', np.nan):.2f}")
             
     st.caption(f"※ これらの指標は{title.lower()}データに基づいています。")
 
@@ -178,7 +169,7 @@ def display_metrics_and_confusion_matrix(metrics, title, is_recent=False):
             yaxis_showgrid=False,
             yaxis_autorange='reversed', # '実際: 非上昇' が上に来るようにする
             height=350, # 高さを固定
-            margin=dict(l=50, r=50, t=50, 50) # マージン調整
+            margin=dict(l=50, r=50, t=50, b=50) # マージン調整
         )
         st.plotly_chart(fig_cm, use_container_width=True)
     else:
@@ -361,22 +352,18 @@ with tab2:
             recent_metrics = model_data.get('recent_data_evaluation', {})
             
             if recent_metrics:
+                # 評価期間はテキストで
+                st.write(f"**評価期間:** `{recent_metrics.get('total_evaluated_days', 'N/A')}` 日間")
+                
                 # 指標をプログレスバーで表示
                 col_rc_metrics1, col_rc_metrics2 = st.columns(2)
                 with col_rc_metrics1:
-                    st.write(f"- **評価期間 (日数):** `{recent_metrics.get('total_evaluated_days', 'N/A')}`")
-                    st.write(f"- **精度 (Accuracy):** `{recent_metrics.get('accuracy', np.nan):.2f}`")
-                    st.progress(float(recent_metrics.get('accuracy', 0)), text="精度 (Accuracy)")
-                    st.write(f"- **ROC AUC スコア:** `{recent_metrics.get('roc_auc_score', np.nan):.2f}`")
-                    st.progress(float(recent_metrics.get('roc_auc_score', 0)), text="ROC AUC スコア")
+                    st.progress(float(recent_metrics.get('accuracy', 0)), text=f"精度: {recent_metrics.get('accuracy', np.nan):.2f}")
+                    st.progress(float(recent_metrics.get('roc_auc_score', 0)), text=f"ROC AUC: {recent_metrics.get('roc_auc_score', np.nan):.2f}")
                 with col_rc_metrics2:
-                    st.markdown(f"**クラス 1 (上昇) の指標:**")
-                    st.write(f"- 適合率 (Precision): `{recent_metrics.get('precision_class_1', np.nan):.2f}`")
-                    st.progress(float(recent_metrics.get('precision_class_1', 0)), text="適合率")
-                    st.write(f"- 再現率 (Recall): `{recent_metrics.get('recall_class_1', np.nan):.2f}`")
-                    st.progress(float(recent_metrics.get('recall_class_1', 0)), text="再現率")
-                    st.write(f"- F1スコア: `{recent_metrics.get('f1_score_class_1', np.nan):.2f}`")
-                    st.progress(float(recent_metrics.get('f1_score_class_1', 0)), text="F1スコア")
+                    st.progress(float(recent_metrics.get('precision_class_1', 0)), text=f"適合率(クラス1): {recent_metrics.get('precision_class_1', np.nan):.2f}")
+                    st.progress(float(recent_metrics.get('recall_class_1', 0)), text=f"再現率(クラス1): {recent_metrics.get('recall_class_1', np.nan):.2f}")
+                    st.progress(float(recent_metrics.get('f1_score_class_1', 0)), text=f"F1スコア(クラス1): {recent_metrics.get('f1_score_class_1', np.nan):.2f}")
                 
                 st.markdown(f"**最新の予測 ({recent_metrics.get('most_recent_prediction_date', 'N/A')}のデータに基づく):**")
                 prediction_value = recent_metrics.get('most_recent_prediction_value', 'N/A')
