@@ -7,3 +7,4 @@ joblib
 matplotlib
 mplfinance
 seaborn
+japanize_matplotlib
