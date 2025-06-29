@@ -1,4 +1,4 @@
-# streamlit_app.py (全機能を単一ファイルに集約 - 日本語表記 & 可視性向上 & 特徴量重要度 & シンプル化)
+# streamlit_app.py (全機能を単一ファイルに集約 - 日本語表記 & 可視性向上 & 特徴量重要度 & 目次機能)
 
 import streamlit as st
 import pandas as pd
@@ -162,8 +162,6 @@ def display_metrics_and_confusion_matrix(metrics, title, is_recent=False):
             f1_val = float(class_1_metrics.get('f1-score', 0)) if not np.isnan(class_1_metrics.get('f1-score', np.nan)) else 0
             st.progress(f1_val, text=f"F1スコア(クラス1): {class_1_metrics.get('f1-score', np.nan):.2f}")
             
-    # Remove additional caption for simplicity
-
     # Confusion Matrix using Plotly
     cm = metrics.get('confusion_matrix', None)
     if cm:
@@ -350,11 +348,20 @@ with tab2:
     else:
         sorted_periods = sorted([int(p.replace('d', '')) for p in periods_data.keys()])
 
+        # サイドバーに目次を追加
+        st.sidebar.markdown("---")
+        st.sidebar.header("期間別モデル概要")
+        for period in sorted_periods:
+            st.sidebar.markdown(f"[{period}日予測モデル](#{period}日予測モデル)") # アンカーリンク
+        st.sidebar.markdown("---")
+
         for target_period in sorted_periods:
             period_str = f"{target_period}d"
             model_data = periods_data[period_str]
 
             st.markdown(f"---") 
+            # アンカーリンクのターゲットとなるIDを設定
+            st.markdown(f"<a name='{target_period}日予測モデル'></a>", unsafe_allow_html=True) 
             st.markdown(f"### {target_period}日予測モデル") 
 
             # 動的閾値を取得
@@ -411,8 +418,6 @@ with tab2:
                 else:
                     st.warning("最新の予測値がありません。")
 
-                # Removed additional caption for simplicity
-
                 display_metrics_and_confusion_matrix(recent_metrics, '直近データ評価', is_recent=True)
             else:
                 st.warning("直近データ評価と最新予測が見つかりませんでした。")
@@ -424,6 +429,8 @@ with tab2:
 
             if features_used:
                 # モデルファイルをロードして特徴量重要度を取得
+                # Note: This might be slow if models are large and not effectively cached.
+                # Consider pre-extracting feature importances to JSON if performance is an issue.
                 model_obj, _ = load_model_and_features_from_github(selected_stock, target_period)
                 
                 if model_obj and hasattr(model_obj, 'feature_importances_'):
