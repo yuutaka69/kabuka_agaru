@@ -1,8 +1,8 @@
-# streamlit_app.py (全機能を単一ファイルに集約 - 日本語表記 & 可視性向上 & 特徴量重要度 (JSONから直接))
+# streamlit_app.py (全機能を単一ファイルに集約 - 日本語表記 & 可視性向上 & 特徴量重要度 (JSONから))
 
 import streamlit as st
 import pandas as pd
-# import joblib # モデルファイルを直接ロードしないため不要
+# import joblib # モデルファイルを直接ロードしないため削除
 import numpy as np
 import requests
 import json
@@ -51,33 +51,9 @@ def load_all_performance_data_from_github():
         st.error(f"エラー: モデル性能のロード中に問題が発生しました: {e}")
         return None
 
-# モデルオブジェクト（.joblib）を直接ロードする関数は、特徴量重要度をJSONから取得するため不要になります。
-# しかし、将来的にモデルによるリアルタイム予測などの機能を追加する場合のためにコメントアウトで残しておくことも可能です。
-# 今回は特徴量重要度のためには不要なので削除（またはコメントアウト）します。
-# @st.cache_resource
-# def load_model_and_features_from_github(stock_code, target_period):
-#     """
-#     GitHubから特定のLightGBMモデルと訓練時に使用された特徴量リストをロードします。
-#     """
-#     model_filename = f"lgbm_model_{stock_code}_{target_period}d.joblib"
-#     model_url = f"{GITHUB_RAW_URL_BASE}models/{model_filename}"
-#     try:
-#         response = requests.get(model_url)
-#         response.raise_for_status()
-#         from io import BytesIO
-#         loaded_content = joblib.load(BytesIO(response.content))
-#         if isinstance(loaded_content, tuple) and len(loaded_content) == 2:
-#             model, feature_names = loaded_content
-#             return model, feature_names
-#         else:
-#             st.error(f"エラー: モデルファイル '{model_filename}' の形式が不正です。モデルと特徴量リストがセットで保存されていません。")
-#             return None, None
-#     except requests.exceptions.RequestException as e:
-#         st.error(f"エラー: GitHubからモデル '{model_filename}' をダウンロードできませんでした: {e}")
-#         return None, None
-#     except Exception as e:
-#         st.error(f"エラー: モデルのロード中に問題が発生しました: {e}")
-#         return None, None
+# load_model_and_features_from_github 関数はjoblibファイルに依存するため、
+# 特徴量重要度をJSONから取得する本アプリでは不要となり削除しました。
+# 将来的にモデルファイルそのものが必要な機能を追加する場合は、別途定義してください。
 
 @st.cache_data
 def load_stock_data_from_github(stock_code):
@@ -287,7 +263,7 @@ with tab1:
             if col in df_ranking.columns:
                 df_ranking[col] = pd.to_numeric(df_ranking[col], errors='coerce')
 
-        # ソート実行
+        # Perform sorting
         df_ranking_sorted = df_ranking.sort_values(by=sort_column, ascending=ascending, na_position='last')
 
         st.markdown("---")
@@ -426,28 +402,36 @@ with tab2:
             st.markdown("#### 特徴量重要度")
             # `features_used`はtraining_evaluationに格納されている
             features_used = model_data.get('training_evaluation', {}).get('features_used', None)
-            feature_importances = model_data.get('training_evaluation', {}).get('feature_importances', None)
+            feature_importances = model_data.get('training_evaluation', {}).get('feature_importances', None) # JSONから直接読み込む
 
             if features_used and feature_importances:
-                feature_importance_series = pd.Series(feature_importances, index=features_used)
-                top_features = feature_importance_series.nlargest(15) # 上位15個の特徴量
+                # feature_importances が数値のリストであることを確認
+                if isinstance(feature_importances, list) and all(isinstance(x, (int, float)) for x in feature_importances):
+                    feature_importance_series = pd.Series(feature_importances, index=features_used)
+                    # 重要度が0より大きい特徴量を除外して、上位15個を表示
+                    top_features = feature_importance_series[feature_importance_series > 0].nlargest(15) 
 
-                fig_fi = px.bar(
-                    top_features,
-                    x=top_features.values,
-                    y=top_features.index,
-                    orientation='h',
-                    title='予測に影響を与えた上位特徴量',
-                    labels={'x': '重要度', 'y': '特徴量'},
-                    height=400 # チャートの高さ
-                )
-                fig_fi.update_layout(yaxis={'categoryorder':'total ascending'}) # 重要度順にソート
-                st.plotly_chart(fig_fi, use_container_width=True)
+                    if not top_features.empty: # 重要度 > 0 の特徴量が1つ以上ある場合のみチャート表示
+                        fig_fi = px.bar(
+                            top_features,
+                            x=top_features.values,
+                            y=top_features.index,
+                            orientation='h',
+                            title='予測に影響を与えた上位特徴量',
+                            labels={'x': '重要度', 'y': '特徴量'},
+                            height=400 # チャートの高さ
+                        )
+                        fig_fi.update_layout(yaxis={'categoryorder':'total ascending'}) # 重要度順にソート
+                        st.plotly_chart(fig_fi, use_container_width=True)
+                    else:
+                        st.warning("重要度が0より大きい特徴量が見つからないため、特徴量重要度チャートを表示できません。")
+                else:
+                    st.warning("特徴量重要度データの形式が不正なため、特徴量重要度チャートを表示できません。")
             else:
                 st.warning("特徴量重要度データが見つからないため、特徴量重要度チャートを表示できません。")
 
 
 st.sidebar.markdown("---")
-st.sidebar.info("データソース: GitHubの公開リポジリ")
+st.sidebar.info("データソース: GitHubの公開リポジトリ")
 st.sidebar.markdown("---")
 st.sidebar.write("Developed with ❤️ by Yuu")
