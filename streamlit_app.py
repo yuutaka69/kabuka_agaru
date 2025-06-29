@@ -1,13 +1,12 @@
-# streamlit_app.py (全機能を単一ファイルに集約 - 日本語表記 & 可視性向上 & 特徴量重要度 (JSONから))
+# streamlit_app.py (全機能を単一ファイルに集約 - 日本語表記 & 可視性向上 & 特徴量重要度 (個別JSONから))
 
 import streamlit as st
 import pandas as pd
-# import joblib # モデルファイルを直接ロードしないため削除
 import numpy as np
 import requests
 import json
 from pathlib import Path
-import matplotlib.pyplot as plt # mplfinanceが内部で使う可能性あり
+import matplotlib.pyplot as plt
 import mplfinance as mpf
 import seaborn as sns
 import plotly.express as px
@@ -27,6 +26,7 @@ plt.rcParams['axes.unicode_minus'] = False # 負の符号の文字化け防止
 # --- 設定 ---
 GITHUB_RAW_URL_BASE = "https://raw.githubusercontent.com/yuutaka69/kabuka_agaru/main/"
 ALL_PERFORMANCE_JSON_URL = f"{GITHUB_RAW_URL_BASE}models/all_stock_model_performance.json"
+MODELS_GITHUB_DIR_URL = f"{GITHUB_RAW_URL_BASE}models/" # 個別metrics.jsonのベースURL
 
 # --- データロード関数 (キャッシュ付き) ---
 
@@ -51,9 +51,29 @@ def load_all_performance_data_from_github():
         st.error(f"エラー: モデル性能のロード中に問題が発生しました: {e}")
         return None
 
-# load_model_and_features_from_github 関数はjoblibファイルに依存するため、
-# 特徴量重要度をJSONから取得する本アプリでは不要となり削除しました。
-# 将来的にモデルファイルそのものが必要な機能を追加する場合は、別途定義してください。
+@st.cache_data # cache_resource ではなく cache_data に変更 (joblibを直接ロードしないため)
+def load_individual_metrics_json_from_github(stock_code, target_period):
+    """
+    GitHubから特定のモデルのmetrics.jsonファイルをロードします。
+    """
+    metrics_filename = f"{stock_code}_{target_period}d_metrics.json"
+    metrics_url = f"{MODELS_GITHUB_DIR_URL}{metrics_filename}"
+
+    try:
+        response = requests.get(metrics_url)
+        response.raise_for_status() # HTTPエラーを確認
+        metrics_data = response.json()
+        # st.info(f"個別metricsファイル '{metrics_filename}' をロードしました。") # デバッグ用
+        return metrics_data
+    except requests.exceptions.RequestException as e:
+        st.warning(f"警告: 個別metricsファイル '{metrics_filename}' をダウンロードできませんでした: {e}")
+        return None
+    except json.JSONDecodeError:
+        st.warning(f"警告: 個別metricsファイル '{metrics_filename}' のJSON形式が不正です。")
+        return None
+    except Exception as e:
+        st.warning(f"警告: 個別metricsファイルのロード中に問題が発生しました: {e}")
+        return None
 
 @st.cache_data
 def load_stock_data_from_github(stock_code):
@@ -400,9 +420,15 @@ with tab2:
             
             # --- Feature Importance Chart ---
             st.markdown("#### 特徴量重要度")
-            # `features_used`はtraining_evaluationに格納されている
-            features_used = model_data.get('training_evaluation', {}).get('features_used', None)
-            feature_importances = model_data.get('training_evaluation', {}).get('feature_importances', None) # JSONから直接読み込む
+            # `features_used`と`feature_importances`を個別metrics.jsonから読み込む
+            # まず、個別のmetrics.jsonをロード
+            individual_metrics = load_individual_metrics_json_from_github(selected_stock, target_period)
+
+            features_used = None
+            feature_importances = None
+            if individual_metrics and 'training_evaluation' in individual_metrics:
+                features_used = individual_metrics['training_evaluation'].get('features_used', None)
+                feature_importances = individual_metrics['training_evaluation'].get('feature_importances', None)
 
             if features_used and feature_importances:
                 # feature_importances が数値のリストであることを確認
