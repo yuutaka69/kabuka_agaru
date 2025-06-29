@@ -1,13 +1,13 @@
-# streamlit_app.py (全機能を単一ファイルに集約 - 日本語表記 & 可視性向上 & 特徴量重要度 & 目次機能)
+# streamlit_app.py (全機能を単一ファイルに集約 - 日本語表記 & 可視性向上 & 特徴量重要度 (JSONから))
 
 import streamlit as st
 import pandas as pd
-import joblib
+import joblib # joblibのロード関数はload_model_and_features_from_githubで利用するが、feature_importancesはJSONから
 import numpy as np
 import requests
 import json
 from pathlib import Path
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt # mplfinanceが内部で使う可能性あり
 import mplfinance as mpf
 import seaborn as sns
 import plotly.express as px
@@ -51,33 +51,36 @@ def load_all_performance_data_from_github():
         st.error(f"エラー: モデル性能のロード中に問題が発生しました: {e}")
         return None
 
-@st.cache_resource
-def load_model_and_features_from_github(stock_code, target_period):
-    """
-    GitHubから特定のLightGBMモデルと訓練時に使用された特徴量リストをロードします。
-    """
-    model_filename = f"lgbm_model_{stock_code}_{target_period}d.joblib"
-    model_url = f"{GITHUB_RAW_URL_BASE}models/{model_filename}"
+# load_model_and_features_from_github は特徴量重要度取得には使われないが、
+# 将来的にモデルオブジェクト自体が必要になる可能性のために残しておく。
+# ただし、現状のアプリでは予測ロジックがないため、この関数は直接は呼び出されない。
+# @st.cache_resource
+# def load_model_and_features_from_github(stock_code, target_period):
+#     """
+#     GitHubから特定のLightGBMモデルと訓練時に使用された特徴量リストをロードします。
+#     """
+#     model_filename = f"lgbm_model_{stock_code}_{target_period}d.joblib"
+#     model_url = f"{GITHUB_RAW_URL_BASE}models/{model_filename}"
 
-    try:
-        response = requests.get(model_url)
-        response.raise_for_status() # HTTPエラーを確認
+#     try:
+#         response = requests.get(model_url)
+#         response.raise_for_status() # HTTPエラーを確認
         
-        from io import BytesIO
-        loaded_content = joblib.load(BytesIO(response.content))
+#         from io import BytesIO
+#         loaded_content = joblib.load(BytesIO(response.content))
 
-        if isinstance(loaded_content, tuple) and len(loaded_content) == 2:
-            model, feature_names = loaded_content
-            return model, feature_names
-        else:
-            st.error(f"エラー: モデルファイル '{model_filename}' の形式が不正です。モデルと特徴量リストがセットで保存されていません。")
-            return None, None
-    except requests.exceptions.RequestException as e:
-        st.error(f"エラー: GitHubからモデル '{model_filename}' をダウンロードできませんでした: {e}")
-        return None, None
-    except Exception as e:
-        st.error(f"エラー: モデルのロード中に問題が発生しました: {e}")
-        return None, None
+#         if isinstance(loaded_content, tuple) and len(loaded_content) == 2:
+#             model, feature_names = loaded_content
+#             return model, feature_names
+#         else:
+#             st.error(f"エラー: モデルファイル '{model_filename}' の形式が不正です。モデルと特徴量リストがセットで保存されていません。")
+#             return None, None
+#     except requests.exceptions.RequestException as e:
+#         st.error(f"エラー: GitHubからモデル '{model_filename}' をダウンロードできませんでした: {e}")
+#         return None, None
+#     except Exception as e:
+#         st.error(f"エラー: モデルのロード中に問題が発生しました: {e}")
+#         return None, None
 
 @st.cache_data
 def load_stock_data_from_github(stock_code):
@@ -426,32 +429,25 @@ with tab2:
             st.markdown("#### 特徴量重要度")
             # `features_used`はtraining_evaluationに格納されている
             features_used = model_data.get('training_evaluation', {}).get('features_used', None)
+            feature_importances = model_data.get('training_evaluation', {}).get('feature_importances', None)
 
-            if features_used:
-                # モデルファイルをロードして特徴量重要度を取得
-                # Note: This might be slow if models are large and not effectively cached.
-                # Consider pre-extracting feature importances to JSON if performance is an issue.
-                model_obj, _ = load_model_and_features_from_github(selected_stock, target_period)
-                
-                if model_obj and hasattr(model_obj, 'feature_importances_'):
-                    feature_importance = pd.Series(model_obj.feature_importances_, index=features_used)
-                    top_features = feature_importance.nlargest(15) # 上位15個の特徴量
+            if features_used and feature_importances:
+                feature_importance_series = pd.Series(feature_importances, index=features_used)
+                top_features = feature_importance_series.nlargest(15) # 上位15個の特徴量
 
-                    fig_fi = px.bar(
-                        top_features,
-                        x=top_features.values,
-                        y=top_features.index,
-                        orientation='h',
-                        title='予測に影響を与えた上位特徴量',
-                        labels={'x': '重要度', 'y': '特徴量'},
-                        height=400 # チャートの高さ
-                    )
-                    fig_fi.update_layout(yaxis={'categoryorder':'total ascending'}) # 重要度順にソート
-                    st.plotly_chart(fig_fi, use_container_width=True)
-                else:
-                    st.warning("モデルまたは特徴量重要度データが見つからないため、特徴量重要度チャートを表示できません。")
+                fig_fi = px.bar(
+                    top_features,
+                    x=top_features.values,
+                    y=top_features.index,
+                    orientation='h',
+                    title='予測に影響を与えた上位特徴量',
+                    labels={'x': '重要度', 'y': '特徴量'},
+                    height=400 # チャートの高さ
+                )
+                fig_fi.update_layout(yaxis={'categoryorder':'total ascending'}) # 重要度順にソート
+                st.plotly_chart(fig_fi, use_container_width=True)
             else:
-                st.warning("モデルの訓練に使用された特徴量リストが見つからないため、特徴量重要度チャートを表示できません。")
+                st.warning("特徴量重要度データが見つからないため、特徴量重要度チャートを表示できません。")
 
 
 st.sidebar.markdown("---")
