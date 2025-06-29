@@ -1,8 +1,8 @@
-# streamlit_app.py (全機能を単一ファイルに集約 - 日本語表記 & 可視性向上 & 特徴量重要度 (JSONから))
+# streamlit_app.py (全機能を単一ファイルに集約 - 日本語表記 & 可視性向上 & 特徴量重要度 (JSONから直接))
 
 import streamlit as st
 import pandas as pd
-import joblib # joblibのロード関数はload_model_and_features_from_githubで利用するが、feature_importancesはJSONから
+# import joblib # モデルファイルを直接ロードしないため不要
 import numpy as np
 import requests
 import json
@@ -51,9 +51,9 @@ def load_all_performance_data_from_github():
         st.error(f"エラー: モデル性能のロード中に問題が発生しました: {e}")
         return None
 
-# load_model_and_features_from_github は特徴量重要度取得には使われないが、
-# 将来的にモデルオブジェクト自体が必要になる可能性のために残しておく。
-# ただし、現状のアプリでは予測ロジックがないため、この関数は直接は呼び出されない。
+# モデルオブジェクト（.joblib）を直接ロードする関数は、特徴量重要度をJSONから取得するため不要になります。
+# しかし、将来的にモデルによるリアルタイム予測などの機能を追加する場合のためにコメントアウトで残しておくことも可能です。
+# 今回は特徴量重要度のためには不要なので削除（またはコメントアウト）します。
 # @st.cache_resource
 # def load_model_and_features_from_github(stock_code, target_period):
 #     """
@@ -61,14 +61,11 @@ def load_all_performance_data_from_github():
 #     """
 #     model_filename = f"lgbm_model_{stock_code}_{target_period}d.joblib"
 #     model_url = f"{GITHUB_RAW_URL_BASE}models/{model_filename}"
-
 #     try:
 #         response = requests.get(model_url)
-#         response.raise_for_status() # HTTPエラーを確認
-        
+#         response.raise_for_status()
 #         from io import BytesIO
 #         loaded_content = joblib.load(BytesIO(response.content))
-
 #         if isinstance(loaded_content, tuple) and len(loaded_content) == 2:
 #             model, feature_names = loaded_content
 #             return model, feature_names
@@ -451,6 +448,6 @@ with tab2:
 
 
 st.sidebar.markdown("---")
-st.sidebar.info("データソース: GitHubの公開リポジトリ")
+st.sidebar.info("データソース: GitHubの公開リポジリ")
 st.sidebar.markdown("---")
 st.sidebar.write("Developed with ❤️ by Yuu")
