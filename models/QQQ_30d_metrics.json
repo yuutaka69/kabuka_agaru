@@ -1,36 +1,36 @@
 {
-    "accuracy": 0.5407239819004525,
-    "macro_avg_precision": 0.49028855721393033,
-    "macro_avg_recall": 0.49491666666666667,
-    "macro_avg_f1-score": 0.4457081081081081,
-    "weighted_avg_precision": 0.4997861371873663,
-    "weighted_avg_recall": 0.5407239819004525,
-    "weighted_avg_f1-score": 0.4758224287636053,
-    "roc_auc_score": 0.4464467592592592,
+    "accuracy": 0.5410700828937453,
+    "macro_avg_precision": 0.49573299041384145,
+    "macro_avg_recall": 0.49746657967433405,
+    "macro_avg_f1-score": 0.4585687439074638,
+    "weighted_avg_precision": 0.5052024648057933,
+    "weighted_avg_recall": 0.5410700828937453,
+    "weighted_avg_f1-score": 0.48707789386604367,
+    "roc_auc_score": 0.4575761992679687,
     "confusion_matrix": [
         [
-            84,
-            492
+            100,
+            474
         ],
         [
-            117,
-            633
+            135,
+            618
         ]
     ],
     "class_0_metrics": {
-        "precision": 0.417910447761194,
-        "recall": 0.14583333333333334,
-        "f1-score": 0.21621621621621623,
-        "support": 576.0
+        "precision": 0.425531914893617,
+        "recall": 0.17421602787456447,
+        "f1-score": 0.24721878862793573,
+        "support": 574.0
     },
     "class_1_metrics": {
-        "precision": 0.5626666666666666,
-        "recall": 0.844,
-        "f1-score": 0.6752,
-        "support": 750.0
+        "precision": 0.5659340659340659,
+        "recall": 0.8207171314741036,
+        "f1-score": 0.6699186991869919,
+        "support": 753.0
     },
-    "support_class_0": 576.0,
-    "support_class_1": 750.0,
+    "support_class_0": 574.0,
+    "support_class_1": 753.0,
     "target_column_name": "target_30d_5.3p",
     "features_used": [
         "Open",
@@ -241,11 +241,11 @@
         0,
         0,
         0,
-        2,
+        1,
         0,
         0,
         1,
-        3,
+        4,
         0,
         0,
         2,
@@ -371,7 +371,7 @@
         0,
         0,
         0,
-        5,
+        4,
         0,
         3,
         3,
@@ -429,7 +429,7 @@
         0,
         0,
         0,
-        1,
+        2,
         0,
         0,
         0,
