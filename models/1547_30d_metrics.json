@@ -1,36 +1,36 @@
 {
-    "accuracy": 0.5798898071625345,
-    "macro_avg_precision": 0.584704200233688,
-    "macro_avg_recall": 0.583990761702225,
-    "macro_avg_f1-score": 0.5796593310009548,
-    "weighted_avg_precision": 0.5875223815436316,
-    "weighted_avg_recall": 0.5798898071625345,
-    "weighted_avg_f1-score": 0.5790085747800242,
-    "roc_auc_score": 0.5997728537345742,
+    "accuracy": 0.5785123966942148,
+    "macro_avg_precision": 0.583435960591133,
+    "macro_avg_recall": 0.5825967692776592,
+    "macro_avg_f1-score": 0.5781922852000091,
+    "weighted_avg_precision": 0.5860694947685543,
+    "weighted_avg_recall": 0.5785123966942148,
+    "weighted_avg_f1-score": 0.5774560287633358,
+    "roc_auc_score": 0.6000571472112161,
     "confusion_matrix": [
         [
-            219,
+            220,
             120
         ],
         [
-            185,
-            202
+            186,
+            200
         ]
     ],
     "class_0_metrics": {
-        "precision": 0.5420792079207921,
-        "recall": 0.6460176991150443,
-        "f1-score": 0.5895020188425303,
-        "support": 339.0
+        "precision": 0.541871921182266,
+        "recall": 0.6470588235294118,
+        "f1-score": 0.5898123324396782,
+        "support": 340.0
     },
     "class_1_metrics": {
-        "precision": 0.6273291925465838,
-        "recall": 0.5219638242894057,
-        "f1-score": 0.5698166431593794,
-        "support": 387.0
+        "precision": 0.625,
+        "recall": 0.5181347150259067,
+        "f1-score": 0.56657223796034,
+        "support": 386.0
     },
-    "support_class_0": 339.0,
-    "support_class_1": 387.0,
+    "support_class_0": 340.0,
+    "support_class_1": 386.0,
     "target_column_name": "target_30d_5.0p",
     "features_used": [
         "Open",
@@ -244,7 +244,7 @@
         3,
         0,
         0,
-        5,
+        6,
         0,
         0,
         0,
@@ -255,7 +255,7 @@
         2,
         0,
         0,
-        1,
+        0,
         1,
         0,
         0,
@@ -301,7 +301,7 @@
         0,
         0,
         0,
-        2,
+        3,
         0,
         1,
         0,
@@ -375,8 +375,8 @@
         0,
         0,
         0,
-        1,
         0,
+        1,
         0,
         4,
         0,
@@ -430,7 +430,7 @@
         0,
         0,
         0,
-        1,
+        0,
         0,
         0,
         0,
