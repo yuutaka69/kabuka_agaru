@@ -6,7 +6,7 @@
     "weighted_avg_precision": 0.06204296314186424,
     "weighted_avg_recall": 0.2490842490842491,
     "weighted_avg_f1-score": 0.0993415186963574,
-    "roc_auc_score": 0.42124533715925394,
+    "roc_auc_score": 0.41871449067431843,
     "confusion_matrix": [
         [
             340,
@@ -31,7 +31,7 @@
     },
     "support_class_0": 340.0,
     "support_class_1": 1025.0,
-    "target_column_name": "target_120d_27.6p",
+    "target_column_name": "target_120d_27.5p",
     "features_used": [
         "Open",
         "High",
