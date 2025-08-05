@@ -1,36 +1,36 @@
 {
     "accuracy": 0.5613243039879608,
-    "macro_avg_precision": 0.5346421609579504,
-    "macro_avg_recall": 0.5171683296760927,
-    "macro_avg_f1-score": 0.46744157753542054,
-    "weighted_avg_precision": 0.5392715548590563,
+    "macro_avg_precision": 0.5361103478595373,
+    "macro_avg_recall": 0.515102969568815,
+    "macro_avg_f1-score": 0.45364600558054524,
+    "weighted_avg_precision": 0.5400941034401813,
     "weighted_avg_recall": 0.5613243039879608,
-    "weighted_avg_f1-score": 0.4952025987982685,
-    "roc_auc_score": 0.46999912594248694,
+    "weighted_avg_f1-score": 0.48302940565443325,
+    "roc_auc_score": 0.46611427783396164,
     "confusion_matrix": [
         [
-            94,
-            488
+            78,
+            506
         ],
         [
-            95,
-            652
+            77,
+            668
         ]
     ],
     "class_0_metrics": {
-        "precision": 0.4973544973544973,
-        "recall": 0.16151202749140894,
-        "f1-score": 0.2438391699092088,
-        "support": 582.0
+        "precision": 0.5032258064516129,
+        "recall": 0.13356164383561644,
+        "f1-score": 0.21109607577807848,
+        "support": 584.0
     },
     "class_1_metrics": {
-        "precision": 0.5719298245614035,
-        "recall": 0.8728246318607764,
-        "f1-score": 0.6910439851616322,
-        "support": 747.0
+        "precision": 0.5689948892674617,
+        "recall": 0.8966442953020134,
+        "f1-score": 0.6961959353830119,
+        "support": 745.0
     },
-    "support_class_0": 582.0,
-    "support_class_1": 747.0,
+    "support_class_0": 584.0,
+    "support_class_1": 745.0,
     "target_column_name": "target_30d_5.3p",
     "features_used": [
         "Open",
@@ -241,7 +241,7 @@
         0,
         0,
         0,
-        1,
+        2,
         0,
         0,
         1,
@@ -315,7 +315,7 @@
         0,
         0,
         0,
-        4,
+        2,
         3,
         0,
         0,
@@ -339,8 +339,8 @@
         0,
         0,
         3,
-        0,
-        3,
+        1,
+        2,
         0,
         2,
         0,
@@ -361,7 +361,7 @@
         0,
         0,
         4,
-        2,
+        3,
         0,
         0,
         0,
@@ -371,7 +371,7 @@
         0,
         0,
         0,
-        4,
+        5,
         0,
         3,
         3,
@@ -394,7 +394,7 @@
         0,
         0,
         0,
-        1,
+        0,
         0,
         0,
         0,
