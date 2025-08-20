@@ -6,7 +6,7 @@
     "weighted_avg_precision": 0.7597175856644027,
     "weighted_avg_recall": 0.4465753424657534,
     "weighted_avg_f1-score": 0.29934383640191026,
-    "roc_auc_score": 0.33672043010752684,
+    "roc_auc_score": 0.3368970814132105,
     "confusion_matrix": [
         [
             310,
@@ -328,10 +328,10 @@
         1,
         0,
         1,
-        1,
+        0,
         0,
         1,
-        0,
+        1,
         0,
         0,
         0,
